@@ -58,7 +58,10 @@ PixelGray** readPGM(const char* filename, int* width, int* height)
         exit(1);
     }
     char format[3];
+    //function to get format which is first value stored in file (P5)
     fscanf(file, "%s", format);
+    //function to get the height and width of image which is on the second line of the lenna.pgm file
+    //height = 255, width = 255
     fscanf(file, "%d %d", height, width);
     int size;
     fscanf(file, "%d", &size);
