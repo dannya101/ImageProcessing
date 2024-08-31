@@ -12,32 +12,31 @@ void writePGM(const char* filename, PixelGray** matrix, int* width, int* height)
 PixelGray** threshold(PixelGray** matrix, int* width, int* height);
 // Function to rotate the image matrix
 PixelGray** rotate(PixelGray** matrix, int* width, int* height);
-//main function - DO NOT MODIFY
 int main() {
     int width, height; // variable to hold width and height. Use reference in other functions
-    PixelGray** image_original = readPGM("pepper.pgm", &width, &height);
-// Now you have the grayscale image data in the 'image_original' 2D array
-// Access pixel data using image[row][col].value
-// For example, to access the pixel at row=2, col=3:
-// unsigned char pixel_value = image[2][3].value;
-// Create a new 2D array 'image_thresh' to store the threshold image
+    PixelGray** image_original = readPGM("lenna.pgm", &width, &height);
+    // Now you have the grayscale image data in the 'image_original' 2D array
+    // Access pixel data using image[row][col].value
+    // For example, to access the pixel at row=2, col=3:
+    // unsigned char pixel_value = image[2][3].value;
+    // Create a new 2D array 'image_thresh' to store the threshold image
     printf("\nIn main function");
     printf("\n%d\n", image_original[0][0].value);
     printf("%d\n", image_original[10][10].value);
     printf("%d\n", image_original[20][0].value);
     printf("%d\n", image_original[10][20].value);
 
-   PixelGray** image_thresh = threshold(image_original, &width, &height);
-//write the image data as "threshold.pgm"
+    PixelGray** image_thresh = threshold(image_original, &width, &height);
+    //write the image data as "threshold.pgm"
     writePGM("threshold.pgm", image_thresh, &width, &height);
-// Create a new 2D array 'image_rotate' to store the rotated image
+    // Create a new 2D array 'image_rotate' to store the rotated image
     PixelGray** image_rotate = rotate(image_original, &width, &height);
-//write the image data as "rotate.pgm"
+    //write the image data as "rotate.pgm"
     writePGM("rotate.pgm", image_rotate, &width, &height);
     image_rotate = rotate(image_rotate, &width, &height);
-//write the image data as "rotate_again.pgm"
+    //write the image data as "rotate_again.pgm"
     writePGM("rotate_again.pgm", image_rotate, &width, &height);
-// Free the allocated memory when you're done
+    // Free the allocated memory when you're done
     for (int i = 0; i < height; ++i) {
         free(image_original[i]);
         free(image_thresh[i]);
@@ -53,7 +52,6 @@ PixelGray** readPGM(const char* filename, int* width, int* height)
 {
     FILE* file = NULL;
     file = fopen(filename, "r");
-    //printf("%p\n", file);
     if(file == NULL)
     {
         printf("Unable to open file\n");
@@ -61,12 +59,9 @@ PixelGray** readPGM(const char* filename, int* width, int* height)
     }
     char format[3];
     fscanf(file, "%s", format);
-    //printf("%s\n", format);
     fscanf(file, "%d %d", height, width);
-    //printf("%d, %d\n", *height, *width);
     int size;
     fscanf(file, "%d", &size);
-    //printf("%d\n", size);
 
     fgetc(file);
 
@@ -197,26 +192,7 @@ PixelGray** rotate(PixelGray** matrix, int* width, int* height)
         }
     }
 
-    /*printf("\nPrints matrix = \n%d", matrix[0][0].value);
-    printf(" %d", matrix[0][1].value);
-    printf(" %d\n", matrix[0][2].value);
-    printf("%d ", matrix[1][0].value);
-    printf("%d ", matrix[1][1].value);
-    printf("%d\n", matrix[1][2].value);
-    printf("%d ", matrix[2][0].value);
-    printf("%d ", matrix[2][1].value);
-    printf("%d\n", matrix[2][2].value);
-
-    printf("\nPrints matrix2 = \n%d", matrix2[0][0].value);
-    printf(" %d", matrix2[0][1].value);
-    printf(" %d\n", matrix2[0][2].value);
-    printf("%d ", matrix2[1][0].value);
-    printf("%d ", matrix2[1][1].value);
-    printf("%d\n", matrix2[1][2].value);
-    printf("%d ", matrix2[2][0].value);
-    printf("%d ", matrix2[2][1].value);
-    printf("%d\n", matrix2[2][2].value);*/
-
+    
     printf("\nIn rotate function!");
     printf("\n%d\n", matrix2[0][0].value);
     printf("%d\n", matrix2[10][10].value);
