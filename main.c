@@ -72,7 +72,7 @@ PixelGray** readPGM(const char* filename, int* width, int* height)
     //have pointer point to next line
     fgetc(file);
 
-    //here is where we use memory allocation
+    //here is where we use memory allocation for a double pointer
     PixelGray **matrix = (PixelGray**)malloc(*width * sizeof(PixelGray *));
     if (matrix == NULL) {
         printf("Error: Unable to allocate memory for rows\n");
